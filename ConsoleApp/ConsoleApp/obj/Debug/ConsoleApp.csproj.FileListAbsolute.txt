@@ -4,3 +4,9 @@ D:\Rofiq\Programming\Tugas C#\ConsoleApp\ConsoleApp\bin\Debug\ConsoleApp.pdb
 D:\Rofiq\Programming\Tugas C#\ConsoleApp\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
 D:\Rofiq\Programming\Tugas C#\ConsoleApp\ConsoleApp\obj\Debug\ConsoleApp.exe
 D:\Rofiq\Programming\Tugas C#\ConsoleApp\ConsoleApp\obj\Debug\ConsoleApp.pdb
+D:\IK 1\Abdul Rofiq Yusufa\Tugas C#\ConsoleApp\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+D:\IK 1\Abdul Rofiq Yusufa\Tugas C#\ConsoleApp\ConsoleApp\obj\Debug\ConsoleApp.exe
+D:\IK 1\Abdul Rofiq Yusufa\Tugas C#\ConsoleApp\ConsoleApp\obj\Debug\ConsoleApp.pdb
+D:\IK 1\Abdul Rofiq Yusufa\Tugas C#\ConsoleApp\ConsoleApp\bin\Debug\ConsoleApp.exe
+D:\IK 1\Abdul Rofiq Yusufa\Tugas C#\ConsoleApp\ConsoleApp\bin\Debug\ConsoleApp.pdb
+D:\IK 1\Abdul Rofiq Yusufa\Tugas C#\ConsoleApp\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
