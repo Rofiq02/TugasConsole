@@ -41,21 +41,46 @@ namespace ConsoleApp
             OnProgram.WarnaTampilan(18, 8, menu [pilihan], ConsoleColor.Black, ConsoleColor.Blue);
 
             ConsoleKeyInfo tombol;
+            Console.CursorVisible = false;
             do
            {
              tombol = Console.ReadKey (true);
 
                 if (tombol.Key == ConsoleKey.RightArrow)
                 {
-                    OnProgram.WarnaTampilan (18, 8 + pilihan, menu [pilihan], ConsoleColor.White, ConsoleColor.Black);
-                    if (tombol.Key == ConsoleKey.RightArrow)
+                    OnProgram.WarnaTampilan(18 + (pilihan * 38), 8, menu[pilihan], ConsoleColor.White, ConsoleColor.Black);
+                    if (menu[pilihan] == menu[2])
                     {
-                    pilihan++;
+                        pilihan = 0;
                     }
-                    OnProgram.WarnaTampilan (18, 8 + pilihan, menu [pilihan], ConsoleColor.Black, ConsoleColor.Blue);
+                    else { pilihan++; };
+                    OnProgram.WarnaTampilan(18 + (pilihan * 38), 8, menu[pilihan], ConsoleColor.Black, ConsoleColor.Blue);
+                }
+                else if (tombol.Key == ConsoleKey.LeftArrow)
+                {
+                     OnProgram.WarnaTampilan(18 + (pilihan * 38), 8, menu[pilihan], ConsoleColor.White, ConsoleColor.Black);
+                    if (menu[pilihan] == menu[0])
+                    {
+                        pilihan = 2;
+                    }
+                    else { pilihan--; };
+                    OnProgram.WarnaTampilan(18 + (pilihan * 38), 8, menu[pilihan], ConsoleColor.Black, ConsoleColor.Blue);
                 }
 
            }while(tombol.Key != ConsoleKey.Enter);
+
+            if (pilihan == 0)
+            {
+                int pilihanSiswa;
+
+                do
+                {
+                    OnProgram.RataTengah(1, 12, "1. Tampil Data Siswa,2. Tampil Data Siswa, 3.Edit data siswa,4. Hapus Data Siswa, Masukkan Pilihan Anda [1 - 4]  ");
+                    
+                    pilihanSiswa = int.Parse (Console.ReadLine());
+
+                } while (pilihan != 0);
+            }
 
             
 
