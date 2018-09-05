@@ -176,14 +176,20 @@ namespace ConsoleApp
 
                          }
                          Console.WriteLine("   +-----+----------------------+---------+");
+                         
                      }
                      else
                      {
                          OnProgram.RataTengah(2, 16, "Data Tidak Ditemukan ");
                      }
+                    
 
                      Console.ReadKey();
-                 
+
+                     for (int i = 12; i <= 20; i++)
+                     {
+                         OnProgram.RataTengah(1, i, "                                                                   ");
+                     }
 
                     }
                  else if (pilihanSiswa == 3)
@@ -214,20 +220,20 @@ namespace ConsoleApp
                      {
                          //Tampilan Data Lama
                          DataRow Row = dtSiswa.Rows[0];
-                         Console.WriteLine("NIM      :  " + Row["NIM"]);
-                         Console.WriteLine("NAMA     :  " + Row["NAMA"]);
-                         Console.WriteLine("KELAS    :  " + Row["KELAS"]);
+                         OnProgram.RataTengah (2,15, "NIM          :  " + Row["NIM"]);
+                         OnProgram.RataTengah (2,16, "NAMA         :  " + Row["NAMA"]);
+                         OnProgram.RataTengah (2,17, "KELAS        :  " + Row["KELAS"]);
 
                          //input Data Baru
                          Console.WriteLine();
-                         Console.Write(" NIM BARU     :");
+                        OnProgram.RataTengah (1,19, " NIM BARU     :");
                          string NIMBaru = Console.ReadLine();
-                         Console.Write(" NAMA BARU    :");
+                         OnProgram.RataTengah (1,20, "NAMA BARU    :");
                          string NAMABaru = Console.ReadLine();
-                         Console.Write(" KELAS BARU   :");
+                         OnProgram.RataTengah (1,21, "KELAS BARU   :");
                          string KELAS = Console.ReadLine();
 
-                         Console.Write("Update Data Siswa  [Y/N]  : ");
+                        OnProgram.RataTengah (2,22, "Update Data Siswa  [Y/N]  : ");
                          string jawab = Console.ReadLine();
                          if (jawab.ToUpper() == "Y")
                          {
@@ -247,7 +253,7 @@ namespace ConsoleApp
                        else
                        {
                          //Data Tidak Diketahui
-                         Console.WriteLine (" NIM yang anda masukkan salah ");
+                           OnProgram.RataTengah(1, 14, " NIM yang anda masukkan salah ");
                          Console.ReadKey();
                        }
                  
@@ -259,12 +265,12 @@ namespace ConsoleApp
                         {
                             OnProgram.RataTengah(1, i, "                                        ");
                         }
-                         Console.WriteLine (" Hapus Data Siswa ");
+                         OnProgram.RataTengah (2,12, "Hapus Data Siswa ");
                          Console.WriteLine();
-                         Console.Write ("Masukkan NIM yang ingin di Hapus  :");
+                         OnProgram.RataTengah (2,13, "Masukkan NIM yang ingin di Hapus  :");
                          string NIM = Console.ReadLine();
 
-                         Console.Write (" Yakin Mau Di Hapus ? [Y/N]  ");
+                         OnProgram.RataTengah (2,14, " Yakin Mau Di Hapus ? [Y/N]  ");
                          string jawab = Console.ReadLine ();
                          if (jawab.ToUpper () == "Y")
                          {
