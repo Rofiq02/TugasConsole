@@ -102,9 +102,9 @@ namespace ConsoleApp
                      Console.WriteLine("Input Data Siswa");
                      OnProgram.RataTengah(2,13,"NIM    : ");
                      String NIM = Console.ReadLine();
-                     OnProgram.RataTengah(2,14,"NAMA   :  ");
+                     OnProgram.RataTengah(2,14,"NAMA   : ");
                      string NAMA = Console.ReadLine();
-                     OnProgram.RataTengah(2,15,"KELAS  :  ");
+                     OnProgram.RataTengah(2,15,"KELAS  : ");
                      string KELAS = Console.ReadLine();
                      Console.WriteLine ("");
                      OnProgram.RataTengah(2,16,"Simpan Data ? [Y/N] :");
@@ -117,9 +117,9 @@ namespace ConsoleApp
                          OleDbConnection koneksi = new OleDbConnection (koneksiString);
                          koneksi.Open();
                          OleDbCommand cmd = new OleDbCommand(query, koneksi);
-                         cmd.Parameters.AddWithValue("NIM", NIM);
-                         cmd.Parameters.AddWithValue("NAMA", NAMA);
-                         cmd.Parameters.AddWithValue("KELAS", KELAS);
+                         cmd.Parameters.AddWithValue("@NIM", NIM);
+                         cmd.Parameters.AddWithValue("@NAMA", NAMA);
+                         cmd.Parameters.AddWithValue("@KELAS", KELAS);
                          cmd.ExecuteNonQuery();
                          
                      }
@@ -135,7 +135,7 @@ namespace ConsoleApp
 
                      OnProgram.RataTengah(1,12," Tampil Data Siswa : ");
                      Console.WriteLine();
-                     OnProgram.RataTengah(2,13,"MAsukkan Nama Siswa atau kosongi untuk menampilkan semua :");
+                     OnProgram.RataTengah(2,13,"Masukkan Nama Siswa atau kosongi untuk menampilkan semua :");
                      string cari = Console.ReadLine();
 
                      string koneksistring = "Provider=Microsoft.Ace.OleDB.12.0;Data Source = Siswa.accdb";
@@ -150,7 +150,7 @@ namespace ConsoleApp
                      }
                      else
                      {
-                         query = "SELECT NIM,NAMA,KELAS, FROM Siswa WHERE NAMA LIKE '%" + cari + "%' ";
+                         query = "SELECT NIM,NAMA,KELAS FROM Siswa WHERE NAMA LIKE '%" + cari + "%' ";
                      }
 
 
@@ -164,23 +164,127 @@ namespace ConsoleApp
 
                      if (Dtsiswa.Rows.Count > 0)
                      {
+
+                         OnProgram.RataTengah (2,15, " +-----+----------------------+---------+");
+                         OnProgram.RataTengah (2,16, " | NIM |          NAMA        | KELAS   |");
+                         OnProgram.RataTengah (2,17, " +-----+----------------------+---------+");
                          foreach (DataRow row in Dtsiswa.Rows)
                          {
-                             Console.SetCursorPosition(2,15);
-                             Console.WriteLine(" | {0]  |  {1,-30}  |  {2,-5}  |",
-                                 row["NIM,"], row["NAMA"], row["KELAS"]);
+                             Console.SetCursorPosition(2, 18);
+                             Console.WriteLine(" | {0} |  {1,-18}  |  {2,-5}  |",
+                                 row["NIM"], row["NAMA"], row["KELAS"]);
 
                          }
+                         Console.WriteLine("   +-----+----------------------+---------+");
                      }
                      else
                      {
-                         Console.WriteLine("Data Tidak Ditemukan ");
+                         OnProgram.RataTengah(2, 16, "Data Tidak Ditemukan ");
                      }
 
                      Console.ReadKey();
                  
 
                     }
+                 else if (pilihanSiswa == 3)
+                 {
+                     for (int i = 12; i <= 17; i++)
+                     {
+                         OnProgram.RataTengah(1, i, "                                        ");
+                     }
+
+                     OnProgram.RataTengah(1, 12, "Edit Data Siswa ");
+                     Console.WriteLine ();
+                     OnProgram.RataTengah(1, 13, "Masukkan NIM yang ingin di Edit  : ");
+                     string NIMLama = Console.ReadLine();
+
+                     string query = " SELECT * FROM SISWA WHERE  NIM=@NIM";
+                     string koneksistring = "Provider=Microsoft.Ace.OleDB.12.0;Data Source = Siswa.accdb";
+                     OleDbConnection koneksi = new OleDbConnection(koneksistring);
+                     koneksi.Open();
+
+                     OleDbCommand cmd = new OleDbCommand(query, koneksi);
+                     cmd.Parameters.AddWithValue ("@NIM",NIMLama);
+                     OleDbDataReader reader = cmd.ExecuteReader();
+
+                     DataTable dtSiswa = new DataTable();
+                     dtSiswa.Load(reader);
+
+                     if (dtSiswa.Rows.Count == 1)
+                     {
+                         //Tampilan Data Lama
+                         DataRow Row = dtSiswa.Rows[0];
+                         Console.WriteLine("NIM      :  " + Row["NIM"]);
+                         Console.WriteLine("NAMA     :  " + Row["NAMA"]);
+                         Console.WriteLine("KELAS    :  " + Row["KELAS"]);
+
+                         //input Data Baru
+                         Console.WriteLine();
+                         Console.Write(" NIM BARU     :");
+                         string NIMBaru = Console.ReadLine();
+                         Console.Write(" NAMA BARU    :");
+                         string NAMABaru = Console.ReadLine();
+                         Console.Write(" KELAS BARU   :");
+                         string KELAS = Console.ReadLine();
+
+                         Console.Write("Update Data Siswa  [Y/N]  : ");
+                         string jawab = Console.ReadLine();
+                         if (jawab.ToUpper() == "Y")
+                         {
+                             query = "UPDATE SISWA SET NIM = @NIMBARU, NAMA=@NAMA,KELAS=@KELAS WHERE NIM = @NIM";
+                             cmd = new OleDbCommand(query, koneksi);
+
+                             cmd.Parameters.AddWithValue("@NIMBARU", NIMBaru);
+                             cmd.Parameters.AddWithValue("@NAMA", NAMABaru);
+                             cmd.Parameters.AddWithValue("@KELAS", KELAS);
+                             cmd.Parameters.AddWithValue("@NIM", NIMLama);
+
+                             cmd.ExecuteNonQuery();
+
+                         }
+
+                       }
+                       else
+                       {
+                         //Data Tidak Diketahui
+                         Console.WriteLine (" NIM yang anda masukkan salah ");
+                         Console.ReadKey();
+                       }
+                 
+                 
+                 } 
+                     else if (pilihanSiswa == 4)
+                     {
+                             for (int i = 12; i <= 17; i++)
+                        {
+                            OnProgram.RataTengah(1, i, "                                        ");
+                        }
+                         Console.WriteLine (" Hapus Data Siswa ");
+                         Console.WriteLine();
+                         Console.Write ("Masukkan NIM yang ingin di Hapus  :");
+                         string NIM = Console.ReadLine();
+
+                         Console.Write (" Yakin Mau Di Hapus ? [Y/N]  ");
+                         string jawab = Console.ReadLine ();
+                         if (jawab.ToUpper () == "Y")
+                         {
+                             string koneksiString = "Provider=Microsoft.Ace.OleDB.12.0;Data Source = Siswa.accdb";
+                             OleDbConnection koneksi = new OleDbConnection(koneksiString);
+                             koneksi.Open();
+
+                             string query = "DELETE FROM SISWA WHERE NIM = @NIM";
+                             OleDbCommand cmd = new OleDbCommand (query, koneksi);
+                             cmd.Parameters.AddWithValue ("@NIM", NIM);
+                             cmd.ExecuteNonQuery();
+                         }
+
+
+
+                     }
+
+
+
+                 
 
                  }while (pilihanSiswa != 5);
 
